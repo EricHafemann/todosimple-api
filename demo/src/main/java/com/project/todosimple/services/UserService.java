@@ -1,14 +1,12 @@
 package com.project.todosimple.services;
 
-import com.project.todosimple.exceptions.UserNotFoundException;
 import com.project.todosimple.models.User;
 import com.project.todosimple.repositories.TaskRepository;
+import com.project.todosimple.exceptions.*;
 import com.project.todosimple.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 public class UserService {
