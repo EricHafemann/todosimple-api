@@ -1,53 +1,57 @@
 package com.project.todosimple.application.controllers;
 
-import com.project.todosimple.domain.entities.User;
-import com.project.todosimple.application.services.UserService;
+import com.project.todosimple.application.dtos.request.UserCreateDTO;
+import com.project.todosimple.application.dtos.request.UserUpdateDTO;
+import com.project.todosimple.application.dtos.response.UserResponseDTO;
+import com.project.todosimple.application.services.UserApplicationService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import java.net.URI;
 
 @RestController
 @RequestMapping("/user")
-@Validated
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserApplicationService userApplicationService;
+
+    public UserController(UserApplicationService userApplicationService) {
+        this.userApplicationService = userApplicationService;
+    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> findById (@PathVariable Long id)
-    {
-        User returnUser = this.userService.findById(id);
-        return ResponseEntity.status(200).body(returnUser);
+    public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id) {
+        UserResponseDTO userDTO = userApplicationService.findById(id);
+        return ResponseEntity.ok(userDTO);
     }
 
     @PostMapping
-    @Validated(User.CreateUser.class)
-    public ResponseEntity<Void> create (@Valid @RequestBody User obj)
-    {
-        this.userService.create(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().
-                path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+    public ResponseEntity<UserResponseDTO> create(@Valid @RequestBody UserCreateDTO dto) {
+        UserResponseDTO createdUser = userApplicationService.create(dto);
+
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(createdUser.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(createdUser);
     }
 
     @PutMapping("/{id}")
-    @Validated(User.UpdateUser.class)
-    public ResponseEntity<Void> update (@Valid @RequestBody User obj, @PathVariable Long id)
-    {
-        obj.setId(id);
-        this.userService.update(obj);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<UserResponseDTO> update(
+            @PathVariable Long id,
+            @Valid @RequestBody UserUpdateDTO dto) {
+
+        UserResponseDTO updatedUser = userApplicationService.update(id, dto);
+        return ResponseEntity.ok(updatedUser);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete (@PathVariable Long id)
-    {
-        this.userService.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        userApplicationService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

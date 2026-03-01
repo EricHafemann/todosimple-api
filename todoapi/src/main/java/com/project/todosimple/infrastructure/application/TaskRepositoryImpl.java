@@ -1,8 +1,10 @@
-package com.project.todosimple.infrastructure.persistence;
+package com.project.todosimple.infrastructure.application;
 
 import com.project.todosimple.domain.entities.Task;
+import com.project.todosimple.domain.entities.User;
 import com.project.todosimple.domain.repositories.TaskRepository;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +38,23 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
-    public List<Task> findByUser_Id(Long userId) {
-        return springDataRepository.findByUser_Id(userId);
+    public boolean existsById(Long id) {
+        return springDataRepository.existsById(id);
+    }
+
+    @Override
+    public void delete(Task task) {
+        springDataRepository.delete(task);
+    }
+
+    @Override
+    public List<Task> findByUser(User user) {
+        return springDataRepository.findByUser(user);
+    }
+
+
+    @Override
+    public long countByUser(User user) {
+        return springDataRepository.countByUser(user);
     }
 }
