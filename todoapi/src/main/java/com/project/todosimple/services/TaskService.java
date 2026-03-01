@@ -1,5 +1,6 @@
 package com.project.todosimple.services;
 
+import com.project.todosimple.exceptions.TaskNotFoundException;
 import com.project.todosimple.exceptions.UserNotFoundException;
 import com.project.todosimple.models.Task;
 import com.project.todosimple.models.User;
@@ -23,7 +24,7 @@ public class TaskService {
     public Task findById (Long id)
     {
         Optional<Task> task = this.taskRepository.findById(id);
-        return task.orElseThrow(() -> new UserNotFoundException(
+        return task.orElseThrow(() -> new TaskNotFoundException(
                 "Tarefa não encontrada Id: "+id+", Tipo: "+ User.class.getName()));
     }
 
