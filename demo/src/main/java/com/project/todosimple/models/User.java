@@ -1,5 +1,6 @@
 package com.project.todosimple.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -56,6 +57,7 @@ public class User {
         this.id = id;
     }
 
+    @JsonIgnore
     public List<Task> getTasks() {
         return tasks;
     }
@@ -79,6 +81,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 
     @Override
     public int hashCode() {
