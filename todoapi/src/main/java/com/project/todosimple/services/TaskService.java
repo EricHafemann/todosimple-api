@@ -25,7 +25,7 @@ public class TaskService {
     {
         Optional<Task> task = this.taskRepository.findById(id);
         return task.orElseThrow(() -> new TaskNotFoundException(
-                "Tarefa não encontrada Id: "+id+", Tipo: "+ User.class.getName()));
+                "Tarefa não encontrada Id: "+id+", Tipo: "+ Task.class.getSimpleName()));
     }
 
     public List<Task> findAllByUserId (Long userId)
