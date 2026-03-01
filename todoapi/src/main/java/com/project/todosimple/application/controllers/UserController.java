@@ -1,14 +1,13 @@
-package com.project.todosimple.controllers;
+package com.project.todosimple.application.controllers;
 
-import com.project.todosimple.models.User;
-import com.project.todosimple.services.UserService;
+import com.project.todosimple.domain.entities.User;
+import com.project.todosimple.application.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import java.net.URI;
 
 @RestController

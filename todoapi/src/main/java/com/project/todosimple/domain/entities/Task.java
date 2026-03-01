@@ -1,4 +1,4 @@
-package com.project.todosimple.models;
+package com.project.todosimple.domain.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;

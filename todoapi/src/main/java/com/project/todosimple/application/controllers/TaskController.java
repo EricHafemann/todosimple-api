@@ -1,7 +1,7 @@
-package com.project.todosimple.controllers;
+package com.project.todosimple.application.controllers;
 
-import com.project.todosimple.models.Task;
-import com.project.todosimple.services.TaskService;
+import com.project.todosimple.domain.entities.Task;
+import com.project.todosimple.application.services.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.project.todosimple.models;
+package com.project.todosimple.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
