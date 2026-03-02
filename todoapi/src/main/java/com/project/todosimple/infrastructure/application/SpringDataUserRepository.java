@@ -11,7 +11,6 @@ import java.util.Optional;
 @Repository
 public interface SpringDataUserRepository extends JpaRepository<User, Long> {
 
-    // Métodos derivados do nome
     Optional<User> findByUsername(String username);
 
     boolean existsByUsername(String username);

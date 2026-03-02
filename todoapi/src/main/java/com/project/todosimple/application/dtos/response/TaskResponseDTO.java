@@ -6,7 +6,7 @@ public class TaskResponseDTO {
 
     private Long id;
     private String description;
-    private UserSummaryDTO user;  // Usa o resumo para evitar loop infinito
+    private UserSummaryDTO user;
 
     // Construtores
     public TaskResponseDTO() {}

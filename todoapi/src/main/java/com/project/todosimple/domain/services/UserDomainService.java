@@ -28,6 +28,7 @@ public class UserDomainService {
 
     public String encryptPassword(String rawPassword) {
         return rawPassword;
+        // Adicionar futuramente
     }
 
     public void validateUserUpdate(User existingUser, String newUsername, String newPassword) {

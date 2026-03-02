@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface SpringDataTaskRepository extends JpaRepository<Task, Long> {
 
-    // Métodos derivados do nome
     List<Task> findByUser(User user);
 
     long countByUser(User user);

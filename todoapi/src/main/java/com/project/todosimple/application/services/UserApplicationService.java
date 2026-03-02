@@ -27,14 +27,14 @@ public class UserApplicationService {
     }
 
     @Transactional(readOnly = true)
-    public UserResponseDTO findById(Long id) {  // ✅ NOME CORRETO!
+    public UserResponseDTO findById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado: " + id));
         return mapper.toResponseDTO(user);
     }
 
     @Transactional
-    public UserResponseDTO create(UserCreateDTO dto) {  // ✅ NOME CORRETO!
+    public UserResponseDTO create(UserCreateDTO dto) {
         userDomainService.validateUserCreation(dto.getUsername(), dto.getPassword());
 
         String encryptedPassword = userDomainService.encryptPassword(dto.getPassword());
@@ -47,7 +47,7 @@ public class UserApplicationService {
     }
 
     @Transactional
-    public UserResponseDTO update(Long id, UserUpdateDTO dto) {  // ✅ NOME CORRETO!
+    public UserResponseDTO update(Long id, UserUpdateDTO dto) {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado: " + id));
 
@@ -68,7 +68,7 @@ public class UserApplicationService {
     }
 
     @Transactional
-    public void delete(Long id) {  // ✅ NOME CORRETO!
+    public void delete(Long id) {
         if (!userRepository.existsById(id)) {
             throw new UserNotFoundException("Usuário não encontrado: " + id);
         }

@@ -65,8 +65,6 @@ public class UserRepositoryImpl implements UserRepository {
                 .map(result -> {
                     User user = (User) result[0];
                     Long taskCount = (Long) result[1];
-                    // Se quiser armazenar o count em algum lugar, pode criar um campo transient
-                    // user.setTaskCount(taskCount);
                     return user;
                 })
                 .collect(Collectors.toList());

@@ -51,24 +51,19 @@ public class TaskApplicationService {
 
     @Transactional
     public TaskResponseDTO create(TaskCreateDTO dto) {
-        // 1. Busca usuário
         User user = userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado: " + dto.getUserId()));
 
-        // 2. Validações
         if (dto.getDescription() == null || dto.getDescription().trim().isEmpty()) {
             throw new DomainException("Descrição é obrigatória");
         }
 
-        // 3. Cria entidade
         Task task = new Task();
         task.setDescription(dto.getDescription());
         task.setUser(user);
 
-        // 4. Salva
         Task savedTask = taskRepository.save(task);
 
-        // 5. Retorna DTO
         return mapper.toResponseDTO(savedTask);
     }
 
