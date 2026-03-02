@@ -6,7 +6,7 @@ API REST desenvolvida com **Spring Boot** para gerenciamento de usuários e tare
 
 ## 🚀 Tecnologias Utilizadas
 
-* **Java 21**
+* **Java 24**
 * **Spring Boot 3.5.11**
 * **Spring Data JPA** & **Hibernate**
 * **MySQL**
